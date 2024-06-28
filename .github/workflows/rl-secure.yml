@@ -1,6 +1,5 @@
 name: RL-Secure Workflow
 run-name: rl-scanner-only
-description: Workflow for scanning build artifacts with RL-Secure
 
 on:
   merge_group:
