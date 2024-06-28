@@ -7,7 +7,7 @@ on:
   workflow_dispatch:
   push:
     branches: ['main']
-  pull_request_target:
+  pull_request:
     types:
       - opened
       - synchronize
@@ -30,10 +30,6 @@ jobs:
       - name: Create tgz build artifact
         run: |
           tar -czvf auth0-spa-js.tgz *
-
-      - name: Verify tgz file
-        run: |
-          ls -la packages
 
       - name: Create build artifact
         id: output_build_artifact
