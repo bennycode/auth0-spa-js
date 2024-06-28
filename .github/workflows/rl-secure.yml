@@ -20,16 +20,20 @@ jobs:
 
     steps:
       - uses: actions/checkout@v4
-      - name: Create build artifact
-        id: build
-        shell: bash
-        run: |
-          # Install dependencies
-          npm install
-          # Zip the project with dependencies
-          zip -r auth0-spa-js.zip . -x node_modules/\*
+      
+      - name: Install npm dependencies
+        run: npm install
 
-          # Set the scanfile output parameter
+      - name: Build project
+        run: npm run build
+
+      - name: Zip build artifact
+        run: |
+          zip -r auth0-spa-js.zip dist
+
+      - name: Create build artifact
+        id: output_build_artifact
+        run: |
           echo "scanfile=auth0-spa-js.zip" >> $GITHUB_OUTPUT
 
       - name: Scan packages with rl-secure
@@ -39,7 +43,7 @@ jobs:
           RLSECURE_SITE_KEY: ${{ secrets.RLSECURE_SITE_KEY }}
         uses: reversinglabs/gh-action-rl-scanner-only@v1
         with:
-          artifact-to-scan: ${{ steps.build.outputs.scanfile }}
+          artifact-to-scan: ${{ steps.output_build_artifact.outputs.scanfile }}
           report-path: "My_Report_Dir"
 
       - name: Get the scan status output
