@@ -13,7 +13,6 @@ on:
 
 jobs:
   checkout-build-scan-only:
-    description: Checkout, build, and scan the project
     runs-on: ubuntu-latest
 
     permissions:
