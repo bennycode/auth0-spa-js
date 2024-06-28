@@ -48,10 +48,3 @@ jobs:
         run: |
           echo "The status is: '${{ steps.scan.outputs.status }}'"
           echo "The description is: '${{ steps.scan.outputs.description }}'"
-
-      - name: Show analysis report
-        if: success() || failure()
-        shell: bash
-        run: |
-          ls -la
-          ls -l 'My_Report_Dir'
