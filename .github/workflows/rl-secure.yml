@@ -22,7 +22,6 @@ jobs:
       actions: read
       contents: read
 
-
     steps:
       - uses: actions/checkout@v4
 
@@ -46,7 +45,6 @@ jobs:
         uses: reversinglabs/gh-action-rl-scanner-composite@v1
         with:
           artifact-to-scan: ${{ steps.output_build_artifact.outputs.scanfile }}
-          format
 
       - name: Get the scan status output
         if: success() || failure()
