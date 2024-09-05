@@ -34,7 +34,7 @@ jobs:
 
       - name: Get Artifact Version
         id: get_version
-        run: echo "::set-output name=version::$(cat scripts/.version)"
+        run: echo "::set-output name=version::$(cat .version)"
 
       - name: Set up Python
         uses: actions/setup-python@v4
